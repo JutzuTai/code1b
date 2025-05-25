@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Travia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<style>
+  :root{
+    --orange:#ffa500;
+  }
+  *{
+    font-family: 'Nunito', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+  }
+
+    *::selection{
+        background: var(--orange);
+        color: #fff;
+    }
+
+    html{
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-padding-top: 100px;
+        scroll-behavior: smooth;
+
+    }
+
+    .btn{
+        display: inline-block;
+        margin-top: 1rem;
+        background: var(--orange);
+        color: #fff;
+        padding: .8rem 3rem;
+        border: .2rem solid var(--orange);
+        cursor: pointer;
+        font-size: 1.7rem solid var(--orange);
+        cursor: pointer;
+        font-size: 1.7rem;
+    }
+
+    .btn:hover{
+        background: rgba(255, 165, 0, .2);
+        color: var(--orange);
+    }
+
+    header{
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: #333;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem 9%;
+    }
+
+    header .logo{
+        font-size: 2.5rem;
+        font-weight: bolder;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    header .logo span{
+        color: var(--orange);
+    }
+
+    header .navbar a{
+        color: #fff;
+        font-size: 2rem;
+        margin: 0 .8rem;
+    }
+
+    header .navbar a:hover{
+        color: var(--orange);
+    }
+
+    header .icons i{
+        font-size: 2.5rem;
+        color: #fff;
+        cursor: pointer;
+        margin-right: 2rem;
+    }
+
+    header .icons i:hover{
+        color: var(--orange);
+    }
+
+    /* SEARCHBAR SCRIPT FUNCTION */
+    header .search-bar-container.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .search-bar-container{
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        padding: 1.5rem 2rem;
+        background: #333;
+        border-top: .1rem solid rgba(255, 255, 255, .2);
+        display: flex;
+        align-items: center;
+        z-index: 1001;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .search-bar-container #search-bar{
+        width:100%;
+        padding: 1rem;
+        text-transform: none;
+        color: #333;
+        font-size: 1.7rem;
+        border-radius: .5rem;
+    }
+
+    header .search-bar-container label{
+        color: #fff;
+        cursor: pointer;
+        font-size: 3rem;
+        margin-left: 1.5rem;
+    }
+
+    header .search-bar-container label:hover{
+        color: var(--orange);
+    }
+
+    .login-form-container {
+        position: fixed;
+        top: -120%;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        transition: top 0.4s ease;
+    }
+
+    /* LOGIN SCRIPT FUNCTION */
+    .login-form-container.active {
+        top: 0;
+    }
+
+    .login-form-container form {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 1rem;
+        padding: 2rem 3rem;
+        width: 100%;
+        max-width: 500px; /* ← back to medium size */
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(12px);
+        color: #fff;
+        animation: slideIn 0.6s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .login-form-container form h3 {
+        font-size: 2.5rem;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .login-form-container form .box {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: none;
+        border-radius: .5rem;
+        font-size: 1.6rem;
+        background: rgba(255, 255, 255, 0.8);
+        color: #333;
+        transition: background 0.3s ease;
+    }
+
+    .login-form-container form .box:focus {
+        background: rgba(255, 255, 255, 1);
+        outline: none;
+    }
+
+    .login-form-container form .btn {
+        background-color: #ff6f00;
+        color: #fff;
+        border: none;
+        padding: 1rem;
+        font-size: 1.6rem;
+        border-radius: .5rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .login-form-container form .btn:hover {
+        background-color: #e65c00;
+    }
+
+    .login-form-container form label {
+        font-size: 1.4rem;
+        margin-left: 0.5rem;
+        color: #eee;
+    }
+
+    .login-form-container form #remember {
+        margin: 1.5rem 0;
+        transform: scale(1.2);
+    }
+
+    .login-form-container form p {
+        font-size: 1.3rem;
+        margin: 1rem 0 0;
+        color: #ccc;
+    }
+
+    .login-form-container form p a {
+        color: #ff6f00;
+        text-decoration: none;
+    }
+
+    .login-form-container form p a:hover {
+        text-decoration: underline;
+        color: #fff;
+    }
+
+    .login-form-container #form-close {
+        position: absolute;
+        top: 2rem;
+        right: 2.5rem;
+        font-size: 3.5rem;
+        color: #fff;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .login-form-container #form-close:hover {
+        color: #ff6f00;
+    }
+
+    .form-links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .form-links a {
+        color: #ff6f00;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .form-links a:hover {
+        color: #fff;
+        text-decoration: underline;
+        text-decoration: none;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+
+    .social-icons a {
+        font-size: 2rem;
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background-color: #ff6f00;
+        color: #fff;
+        transform: scale(1.1);
+    }
+
+    #menu-bar{
+        color: #fff;
+        border: .1rem solid #fff;
+        border-radius: .5rem;
+        font-size: 3rem;
+        padding: .5rem 1.2rem;
+        cursor: pointer;
+        display: none;
+    }
+
+    body{
+        min-height: 100vh;
+    }
+
+    /* media queries */
+    @media (max-width: 1200px){
+        html{
+            font-size: 55%;
+        }
+    }
+
+    @media (max-width: 991px){
+        header{
+            padding: 2rem;
+        }
+    }
+
+    @media (max-width: 768px){
+        #menu-bar{
+            display: initial;
+        }
+
+        header .navbar{
+            position: absolute;
+            top: 100%; right: 0; left: 0;
+            background: #333;
+            border-top: .1rem solid rgba(255, 255, 255, .2);
+            padding: 1rem 2rem;
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        }
+
+        header .navbar.active{
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        header .navbar a{
+            display: block;
+            border-radius: .5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: #222;
+        }
+    }
+
+    /* Gallery Section */
+    .gallery {
+    padding: 10rem 9%;
+    background: url(assets/g0.png) no-repeat center center/cover;
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    min-height: 100vh;
+    }
+
+    .gallery::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        z-index: -1;
+    }
+
+    .gallery-header {
+        text-align: center;
+        margin-bottom: 6rem;
+        margin-top: 4rem;
+    }
+
+    .gallery-header h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: var(--orange);
+    }
+
+    .gallery-header p {
+        font-size: 1.8rem;
+        max-width: 700px;
+        margin: 0 auto;
+        color: #fff;
+        margin-bottom: 3rem;
+    }
+
+    .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .gallery-item {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        background-color: #fff;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: fill;
+        display: block;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .gallery-info {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        padding: 1.5rem;
+        color: #fff;
+        transition: 0.3s ease-in-out;
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    .gallery-item:hover .gallery-info {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .gallery-info h3 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--orange);
+        margin-bottom: 0.5rem;
+    }
+
+    .gallery-info p {
+        font-size: 1.6rem;
+    }
+
+    
+
+</style>
+<body>
+    <!-- Inserted Navbar -->
+  <header>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo">T<span>ravia</span></a>
+
+    <nav class="navbar">
+        <a href="Index.html">Home</a>
+        <a href="AboutUS.html">About Us</a>
+        <a href="Services.html">Services</a>
+        <a href="#Packages">Packages</a>
+        <a href="Reviews.html">Reviews</a>
+        <a href="ContactUs.html">Contact Us</a>
+        <a href="News.html">News</a>
+    </nav>
+
+    <div class="icons">
+      <i class="fas fa-search" id="search-btn"></i>
+      <i class="fas fa-user" id="login-btn"></i>
+    </div>
+
+
+    <form action="" class="search-bar-container">
+      <input type="search" id="search-bar" placeholder="search here...">
+      <label for="search-bar" class="fas fa-search"></label>
+    </form>
+  </header>
+
+  <!-- login form container -->
+  <div class="login-form-container">
+
+    <i class="fas fa-close" id="form-close"></i>
+
+      <form action="">
+        <h3>Login</h3>
+        <input type="text" class="box" placeholder="Username" required>
+        <input type="password" class="box" placeholder="Password" required>
+        <input type="submit" value="Login Now" class="btn" required>
+        <input type="checkbox" id="remember" required>
+        <label for="remember" required>Agree with Terms & Condition</label>
+        <div class="form-links">
+          <a href="#" class="left-link">Forgot Password?</a>
+          <a href="Register.html" class="right-link">Register Account</a>
+        </div>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-google"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-header">
+            <h1><i class="fas fa-images"></i> Wander the World with Us</h1>
+            <p>Experience breathtaking destinations and unforgettable moments.</p>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="assets/g1.jpg" alt="Beach Paradise">
+                    <div class="gallery-info">
+                    <h3>Beach Paradise</h3>
+                    <p>Relax on golden sands with crystal clear waters.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/g2.jpeg" alt="Mountain Adventure">
+                    <div class="gallery-info">
+                    <h3>Mountain Adventure</h3>
+                    <p>Explore scenic peaks and fresh alpine air.</p>
+                </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/g3.jpeg" alt="City Lights">
+                    <div class="gallery-info">
+                    <h3>City Lights</h3>
+                    <p>Urban tours with culture, cuisine, and history.</p>
+                </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/g4.jpg" alt="Desert Safari">
+                    <div class="gallery-info">
+                    <h3>Desert Safari</h3>
+                    <p>Dune bashing, camel rides & starry nights.</p>
+                </div>
+                </div>
+                    <div class="gallery-item">
+                        <img src="assets/g5.jpeg" alt="Rainforest Retreat">
+                        <div class="gallery-info">
+                        <h3>Rainforest Retreat</h3>
+                        <p>Reconnect with nature in lush greenery.</p>
+                    </div>
+                </div>    
+                <div class="gallery-item">
+                    <img src="assets/g6.jpg" alt="Lake Retreat">
+                    <div class="gallery-info">
+                        <h3>Lake Retreat</h3>
+                        <p>Serene waters and cozy cabins surrounded by nature.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/g7.jpg" alt="Island Escape">
+                    <div class="gallery-info">
+                        <h3>Island Escape</h3>
+                        <p>Private getaways in tropical paradise destinations.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/g8.jpg" alt="Snowy Slopes">
+                    <div class="gallery-info">
+                        <h3>Snowy Slopes</h3>
+                        <p>Winter wonderland adventures and skiing experiences.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/g9.jpg" alt="Ocean Cruise">
+                    <div class="gallery-info">
+                        <h3>Ocean Cruise</h3>
+                        <p>Luxurious cruises across blue oceans and exotic ports.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/g10.jpg" alt="Jungle Trek">
+                    <div class="gallery-info">
+                        <h3>Jungle Trek</h3>
+                        <p>Wild journeys deep into untouched rainforest terrains.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="assets/g11.jpg" alt="Sky Ride">
+                    <div class="gallery-info">
+                        <h3>Sky Ride</h3>
+                        <p>Panoramic views in colorful hot air balloon rides.</p>
+                    </div>
+                </div> 
+                <div class="gallery-item">
+                    <img src="assets/g12.jpg" alt="Ancient Temple">
+                    <div class="gallery-info">
+                      <h3>Ancient Temple</h3>
+                      <p>Explore the cultural heritage of Asia’s sacred sites.</p>
+                    </div>
+                </div>                     
+            </div>
+        </div>
+    </section>
+  
+</body>
+<script>
+    
+
+    // Navbar interactivity
+    let searchBtn = document.querySelector('#search-btn');
+    let searchBar = document.querySelector('.search-bar-container');
+    let formBtn = document.querySelector('#login-btn');
+    let loginForm = document.querySelector('.login-form-container');
+    let formClose = document.querySelector('#form-close');
+    let menu = document.querySelector('#menu-bar');
+    let navbar = document.querySelector('.navbar');
+
+    window.onscroll = () =>{
+        searchBtn.classList.remove('fa-times');
+        searchBar.classList.remove('active');
+        menu.classList.remove('fa-times');
+        navbar.classList.remove('active');
+        loginForm.classList.remove('active');
+    }
+
+    menu.addEventListener('click', () =>{
+        menu.classList.toggle('fa-times');
+        navbar.classList.toggle('active');
+    });
+
+    searchBtn.addEventListener('click', () =>{
+        searchBtn.classList.toggle('fa-times');
+        searchBar.classList.toggle('active');
+    });
+
+    formBtn.addEventListener('click', () =>{
+        loginForm.classList.add('active');
+    });
+
+    formClose.addEventListener('click', () => {
+        loginForm.classList.remove('active');
+    });
+
+</script>
+</html>

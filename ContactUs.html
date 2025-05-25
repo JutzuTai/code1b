@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContactUs | Travia</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<style>
+  :root{
+    --orange:#ffa500;
+    --main-color: #ff0;
+    --light-white: rgba(255, 255, 255, .5);
+    --light-black: rgba(0, 0, 0, .3);
+    --light-bg: rgba(255, 255, 255, .1);
+    --black: #000; 
+    --white: #fff;
+  }
+  *{
+    font-family: 'Nunito', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+  }
+
+  *::selection{
+      background: var(--orange);
+      color: #fff;
+  }
+
+  html{
+      font-size: 62.5%;
+      overflow-x: hidden;
+      scroll-padding-top: 100px;
+      scroll-behavior: smooth;
+  }
+
+  .btn{
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--orange);
+      color: #fff;
+      padding: .8rem 3rem;
+      border: .2rem solid var(--orange);
+      cursor: pointer;
+      font-size: 1.7rem;
+  }
+
+  .btn:hover{
+      background: rgba(255, 165, 0, .2);
+      color: var(--orange);
+  }
+
+  header{
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #333;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 9%;
+  }
+
+  header .logo{
+      font-size: 2.5rem;
+      font-weight: bolder;
+      color: #fff;
+      text-transform: uppercase;
+  }
+
+  header .logo span{
+      color: var(--orange);
+  }
+
+  header .navbar a{
+      color: #fff;
+      font-size: 2rem;
+      margin: 0 .8rem;
+  }
+
+  header .navbar a:hover{
+      color: var(--orange);
+  }
+
+  header .icons i{
+      font-size: 2.5rem;
+      color: #fff;
+      cursor: pointer;
+      margin-right: 2rem;
+  }
+
+  header .icons i:hover{
+      color: var(--orange);
+  }
+
+  /* SEARCHBAR SCRIPT FUNCTION */
+  header .search-bar-container.active{
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  header .search-bar-container{
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      padding: 1.5rem 2rem;
+      background: #333;
+      border-top: .1rem solid rgba(255, 255, 255, .2);
+      display: flex;
+      align-items: center;
+      z-index: 1001;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  header .search-bar-container #search-bar{
+      width:100%;
+      padding: 1rem;
+      text-transform: none;
+      color: #333;
+      font-size: 1.7rem;
+      border-radius: .5rem;
+  }
+
+  header .search-bar-container label{
+      color: #fff;
+      cursor: pointer;
+      font-size: 3rem;
+      margin-left: 1.5rem;
+  }
+
+  header .search-bar-container label:hover{
+      color: var(--orange);
+  }
+
+  .login-form-container {
+      position: fixed;
+      top: -120%;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: top 0.4s ease;
+  }
+
+  /* LOGIN SCRIPT FUNCTION */
+  .login-form-container.active {
+      top: 0;
+  }
+
+  .login-form-container form {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 1rem;
+      padding: 2rem 3rem;
+      width: 100%;
+      max-width: 500px; /* ← back to medium size */
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      animation: slideIn 0.6s ease;
+  }
+
+  @keyframes slideIn {
+      from {
+          transform: translateY(-50px);
+          opacity: 0;
+      }
+      to {
+          transform: translateY(0);
+          opacity: 1;
+      }
+  }
+
+  .login-form-container form h3 {
+      font-size: 2.5rem;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+  }
+
+  .login-form-container form .box {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: .5rem;
+      font-size: 1.6rem;
+      background: rgba(255, 255, 255, 0.8);
+      color: #333;
+      transition: background 0.3s ease;
+  }
+
+  .login-form-container form .box:focus {
+      background: rgba(255, 255, 255, 1);
+      outline: none;
+  }
+
+  .login-form-container form .btn {
+      background-color: #ff6f00;
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      font-size: 1.6rem;
+      border-radius: .5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+      margin-top: 1rem;
+  }
+
+  .login-form-container form .btn:hover {
+      background-color: #e65c00;
+  }
+
+  .login-form-container form label {
+      font-size: 1.4rem;
+      margin-left: 0.5rem;
+      color: #eee;
+  }
+
+  .login-form-container form #remember {
+      margin: 1.5rem 0;
+      transform: scale(1.2);
+  }
+
+  .login-form-container form p {
+      font-size: 1.3rem;
+      margin: 1rem 0 0;
+      color: #ccc;
+  }
+
+  .login-form-container form p a {
+      color: #ff6f00;
+      text-decoration: none;
+  }
+
+  .login-form-container form p a:hover {
+      text-decoration: underline;
+      color: #fff;
+  }
+
+  .login-form-container #form-close {
+      position: absolute;
+      top: 2rem;
+      right: 2.5rem;
+      font-size: 3.5rem;
+      color: #fff;
+      cursor: pointer;
+      transition: color 0.3s;
+  }
+
+  .login-form-container #form-close:hover {
+      color: #ff6f00;
+  }
+
+  .form-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      font-size: 1.5rem;
+  }
+
+  .form-links a {
+      color: #ff6f00;
+      text-decoration: none;
+      transition: color 0.3s;
+  }
+
+  .form-links a:hover {
+      color: #fff;
+      text-decoration: underline;
+      text-decoration: none;
+  }
+
+  .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      gap: 1rem;
+  }
+
+  .social-icons a {
+      font-size: 2rem;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+  }
+
+  .social-icons a:hover {
+      background-color: #ff6f00;
+      color: #fff;
+      transform: scale(1.1);
+  }
+
+  #menu-bar{
+      color: #fff;
+      border: .1rem solid #fff;
+      border-radius: .5rem;
+      font-size: 3rem;
+      padding: .5rem 1.2rem;
+      cursor: pointer;
+      display: none;
+  }
+
+  body{
+    background: url(assets/cu.jpg) no-repeat rgba(0, 0, 0, .5);
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-blend-mode: multiply;
+    min-height: calc(100vh - 10rem);
+  }
+
+  /* media queries */
+  @media (max-width: 1200px){
+      html{
+          font-size: 55%;
+      }
+  }
+
+  @media (max-width: 991px){
+      header{
+          padding: 2rem;
+      }
+  }
+
+  @media (max-width: 768px){
+    #menu-bar{
+        display: initial;
+    }
+
+    header .navbar{
+        position: absolute;
+        top: 100%; right: 0; left: 0;
+        background: #333;
+        border-top: .1rem solid rgba(255, 255, 255, .2);
+        padding: 1rem 2rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .navbar a{
+        display: block;
+        border-radius: .5rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        background: #222;
+    }
+  }
+
+  /* Contact Form*/
+  @media (max-width: 1024px) {
+    .contact .row {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact .row .map,
+    .contact .row form {
+      width: 90%;
+      max-width: 600px;
+    }
+
+    /* .contact .grid {
+      grid-template-columns: 1fr;
+      padding: 0 10rem;
+    }  */
+  }
+
+  @media (max-width: 967px) {
+    .contact .grid {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      padding: 0 3rem !important;
+      gap: 2rem !important;
+    }
+
+    .contact .grid .box {
+      width: 86% !important;
+      padding: 2rem 1rem !important;
+    }
+  }
+  
+  .section{
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 2rem;
+  }
+
+  .heading {
+    text-align: center;
+    font-size: 4rem;
+    color: var(--white);
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-top: 10rem;
+  }
+
+  .container.contact {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+  }
+
+  .contact .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  /* Target only the button in the contact form */
+  .contact form .btn {
+    background: var(--main-color);         
+    color: var(--black);
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: .5rem;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100%;                /* Full-width for mobile responsiveness */
+    transition: background 0.3s ease;
+  }
+
+  .contact form .btn:hover {
+    background: var(--light-black); /* Darker on hover */
+    color: #fff;
+  }
+
+  
+  .contact .row .map{
+    width: 100%;
+    flex: 1 1 40rem;
+    padding: 2rem;
+    background-color: var(--light-bg);
+    border-radius: .5rem;
+    backdrop-filter: blur(.4rem);
+  }
+
+  .contact .row form {
+    flex: 1 1 40rem;
+    padding: 2rem;
+    background-color: var(--light-bg);
+    border-radius: .5rem;
+    backdrop-filter: blur(.4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact .row form h3{
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--white);
+    padding-bottom: 1rem;
+  }
+
+  .contact .row form .box{
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: .5rem;
+    background-color: var(--light-black);
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: var(--white);
+    text-transform: none;
+  }
+
+  .contact .row form .box::placeholder{
+    color: var(--light-white);
+  }
+
+  .contact .row form textarea{
+    height: 15rem;
+    resize: none;
+  }
+
+  .contact .grid{
+    margin: 3rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    padding: 0 2rem;
+    gap: 2rem;
+  }
+
+  .contact .grid .box {
+    padding: 3rem 2rem;
+    background-color: var(--light-bg);
+    border-radius: .5rem;
+    backdrop-filter: blur(.4rem);
+    text-align: center;
+  }
+
+  .contact .grid .box i{
+    height: 5rem;
+    width: 6rem;
+    line-height: 5rem;
+    font-size: 2.5rem;
+    background-color: var(--light-black);
+    border-radius: .5rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact .grid .box h3{
+    padding: .5rem 0;
+    font-size: 2rem;
+    color: var(--main-color);
+  }
+
+  .contact .grid .box a{
+    display: block;
+    padding-top: 1rem;
+    font-size: 1.6rem;
+    color: var(--light-white);
+    line-height: 1.5;
+    text-transform: none;
+  }
+
+  .contact .grid .box a:hover{
+    color: var(--white);
+    text-decoration: underline;
+    text-transform: none;
+  }
+
+  .contact .credit{
+    text-align: center;
+    font-size: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    color: var(--light-white);
+  }
+
+  .contact .credit span{
+    color: var(--main-color);
+  }
+    
+</style>
+<body>
+  <!-- Inserted Navbar -->
+  <header>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo">T<span>ravia</span></a>
+
+    <nav class="navbar">
+        <a href="Index.html">Home</a>
+        <a href="AboutUS.html">About Us</a>
+        <a href="Services.html">Services</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="Reviews.html">Reviews</a>
+        <a href="#Packages">Packages</a>
+        <a href="News.html">News</a>
+    </nav>
+
+    <div class="icons">
+      <i class="fas fa-search" id="search-btn"></i>
+      <i class="fas fa-user" id="login-btn"></i>
+    </div>
+
+
+    <form action="" class="search-bar-container">
+      <input type="search" id="search-bar" placeholder="search here...">
+      <label for="search-bar" class="fas fa-search"></label>
+    </form>
+  </header>
+
+  <!-- login form container -->
+  <div class="login-form-container">
+
+      <i class="fas fa-close" id="form-close"></i>
+
+      <form action="">
+        <h3>Login</h3>
+        <input type="text" class="box" placeholder="Username" required>
+        <input type="password" class="box" placeholder="Password" required>
+        <input type="submit" value="Login Now" class="btn" required>
+        <input type="checkbox" id="remember" required>
+        <label for="remember" required>Agree with Terms & Condition</label>
+        <div class="form-links">
+          <a href="#" class="left-link">Forgot Password?</a>
+          <a href="Register.html" class="right-link">Register Account</a>
+        </div>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-google"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </form>
+  </div>
+
+  <!-- contact section -->
+  <div class="container contact">
+    <h1 class="heading">Contact Us</h1>
+    <section>
+      <div class="row">
+        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1900.
+        772437607282!2d120.58564931888206!3d15.17720854701033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.
+        1!3m3!1m2!1s0x3396ed8f97c56efb%3A0xf7c84f2cd26d1beb!2sClark%20College%20of%20Science%20and%20Technology!
+        5e0!3m2!1sen!2sph!4v1747310483486!5m2!1sen!2sph" 
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <form action="" method="post">
+          <h3>Get In Touch</h3>
+          <input type="text" name="name" maxlength="50" placeholder="Full Name" class="box" required>
+          <input type="email" name="nemail" maxlength="50" placeholder="Email or Phone No." class="box" required>
+          <input type="number" name="number" maxlength="10" min="0" max="9999999999" placeholder="No. of People" class="box" required>
+          <textarea name="message" class="box" cols="30" maxlength="1000" rows="10" placeholder="Message..." required></textarea>
+          <input type="submit" value="Send Message" name="send" class="btn">
+        </form>
+      </div>
+      <div class="grid">
+        <div class="box">
+          <i class="fas fa-phone"></i>
+          <h3>Phone No.</h3>
+          <a href="tel:1234567890">+63 921-5089-729</a>
+          <a href="tel:111222333">+63 910-0342-369</a>
+        </div>
+        <div class="box">
+          <i class="fas fa-envelope"></i>
+          <h3>Email Address</h3>
+          <a href="mailto:shaikhanas@gmail.com">shaikhanas@gmail.com</a>
+          <a href="mailto:admin@OnlineITtuts.com">admin@OnlineITtuts.com</a>
+        </div>
+        <div class="box">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Office Address</h3>
+          <a href="#">Flat no. 01, a-1, Gotham, Mumbai, Pampanga - 40010</a>
+        </div>
+
+      </div>
+      <div class="credit">
+        &copy; copyright @2025 by <span>Travia | Travel & Tour</span> | All Rights Reserved.
+      </div>
+    </section>
+  </div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+</body>
+
+<!-- JavaScript -->
+<script>
+    // Navbar interactivity
+    let searchBtn = document.querySelector('#search-btn');
+    let searchBar = document.querySelector('.search-bar-container');
+    let formBtn = document.querySelector('#login-btn');
+    let loginForm = document.querySelector('.login-form-container');
+    let formClose = document.querySelector('#form-close');
+    let menu = document.querySelector('#menu-bar');
+    let navbar = document.querySelector('.navbar');
+
+    window.onscroll = () =>{
+        searchBtn.classList.remove('fa-times');
+        searchBar.classList.remove('active');
+        menu.classList.remove('fa-times');
+        navbar.classList.remove('active');
+        loginForm.classList.remove('active');
+    }
+
+    menu.addEventListener('click', () =>{
+        menu.classList.toggle('fa-times');
+        navbar.classList.toggle('active');
+    });
+
+    searchBtn.addEventListener('click', () =>{
+        searchBtn.classList.toggle('fa-times');
+        searchBar.classList.toggle('active');
+    });
+
+    formBtn.addEventListener('click', () =>{
+        loginForm.classList.add('active');
+    });
+
+    formClose.addEventListener('click', () => {
+        loginForm.classList.remove('active');
+    });
+
+</script>
+</html>

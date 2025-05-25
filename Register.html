@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | Travia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6); /* Light dark overlay */
+      z-index: 0;
+    }
+
+    body > .register-container {
+      z-index: 1;
+      position: relative;
+    }
+
+
+    .register-container {
+      background: rgba(0, 0, 0, 0.40);
+      padding: 2.5rem 3rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      color: #fff;
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.1rem;
+      color: #ffa500;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: #ffa500;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .input-group input::placeholder {
+      color: #ddd;
+    }
+
+    .register-container .btn {
+      width: 100%;
+      background: #ffa500;
+      border: none;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .register-container .btn:hover {
+      background: #e59400;
+    }
+
+    .register-container p {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .register-container p a {
+      color: #ffa500;
+      text-decoration: none;
+    }
+
+    .register-container p a:hover {
+      color:  cyan;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-container">
+    <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+    <form id="registerForm">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Username" required />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" placeholder="Email" required />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Password" required />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Confirm Password" required />
+      </div>
+      <button type="submit" class="btn">Register</button>
+      <p>Already have an account? <a href="Index.html">Login here</a></p>
+    </form>
+  </div>
+
+  <script>
+    // JS: form check
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // prevent default form submission
+
+        const inputs = document.querySelectorAll('input');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (!input.value.trim()) valid = false;
+        });
+
+        if (!valid) {
+            alert('Please fill in all fields.');
+        } else {
+            alert('Registration Successful!');
+            window.location.href = 'Index.html';
+        }
+    });
+
+  </script>
+
+</body>
+</html>

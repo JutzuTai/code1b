@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews | Travia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<style>
+  :root{
+    --orange:#ffa500;
+    --dark: #333;
+    --light: #fff;
+    --bg-dark: #1a1a1a;
+  }
+  *{
+    font-family: 'Nunito', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+  }
+
+    *::selection{
+        background: var(--orange);
+        color: #fff;
+    }
+
+    html{
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-padding-top: 10rem;
+        scroll-behavior: smooth;
+
+    }
+
+    .btn{
+        display: inline-block;
+        margin-top: 1rem;
+        background: var(--orange);
+        color: #fff;
+        padding: .8rem 3rem;
+        border: .2rem solid var(--orange);
+        cursor: pointer;
+        font-size: 1.7rem solid var(--orange);
+        cursor: pointer;
+        font-size: 1.7rem;
+    }
+
+    .btn:hover{
+        background: rgba(255, 165, 0, .2);
+        color: var(--orange);
+    }
+
+    header{
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: #333;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem 9%;
+    }
+
+    header .logo{
+        font-size: 2.5rem;
+        font-weight: bolder;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    header .logo span{
+        color: var(--orange);
+    }
+
+    header .navbar a{
+        color: #fff;
+        font-size: 2rem;
+        margin: 0 .8rem;
+    }
+
+    header .navbar a:hover{
+        color: var(--orange);
+    }
+
+    header .icons i{
+        font-size: 2.5rem;
+        color: #fff;
+        cursor: pointer;
+        margin-right: 2rem;
+    }
+
+    header .icons i:hover{
+        color: var(--orange);
+    }
+
+    /* SEARCHBAR SCRIPT FUNCTION */
+    header .search-bar-container.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .search-bar-container{
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        padding: 1.5rem 2rem;
+        background: #333;
+        border-top: .1rem solid rgba(255, 255, 255, .2);
+        display: flex;
+        align-items: center;
+        z-index: 1001;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .search-bar-container #search-bar{
+        width:100%;
+        padding: 1rem;
+        text-transform: none;
+        color: #333;
+        font-size: 1.7rem;
+        border-radius: .5rem;
+    }
+
+    header .search-bar-container label{
+        color: #fff;
+        cursor: pointer;
+        font-size: 3rem;
+        margin-left: 1.5rem;
+    }
+
+    header .search-bar-container label:hover{
+        color: var(--orange);
+    }
+
+    .login-form-container {
+        position: fixed;
+        top: -120%;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        transition: top 0.4s ease;
+    }
+
+    /* LOGIN SCRIPT FUNCTION */
+    .login-form-container.active {
+        top: 0;
+    }
+
+    .login-form-container form {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 1rem;
+        padding: 2rem 3rem;
+        width: 100%;
+        max-width: 500px; /* ← back to medium size */
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(12px);
+        color: #fff;
+        animation: slideIn 0.6s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .login-form-container form h3 {
+        font-size: 2.5rem;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .login-form-container form .box {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: none;
+        border-radius: .5rem;
+        font-size: 1.6rem;
+        background: rgba(255, 255, 255, 0.8);
+        color: #333;
+        transition: background 0.3s ease;
+    }
+
+    .login-form-container form .box:focus {
+        background: rgba(255, 255, 255, 1);
+        outline: none;
+    }
+
+    .login-form-container form .btn {
+        background-color: #ff6f00;
+        color: #fff;
+        border: none;
+        padding: 1rem;
+        font-size: 1.6rem;
+        border-radius: .5rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .login-form-container form .btn:hover {
+        background-color: #e65c00;
+    }
+
+    .login-form-container form label {
+        font-size: 1.4rem;
+        margin-left: 0.5rem;
+        color: #eee;
+    }
+
+    .login-form-container form #remember {
+        margin: 1.5rem 0;
+        transform: scale(1.2);
+    }
+
+    .login-form-container form p {
+        font-size: 1.3rem;
+        margin: 1rem 0 0;
+        color: #ccc;
+    }
+
+    .login-form-container form p a {
+        color: #ff6f00;
+        text-decoration: none;
+    }
+
+    .login-form-container form p a:hover {
+        text-decoration: underline;
+        color: #fff;
+    }
+
+    .login-form-container #form-close {
+        position: absolute;
+        top: 2rem;
+        right: 2.5rem;
+        font-size: 3.5rem;
+        color: #fff;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .login-form-container #form-close:hover {
+        color: #ff6f00;
+    }
+
+    .form-links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .form-links a {
+        color: #ff6f00;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .form-links a:hover {
+        color: #fff;
+        text-decoration: underline;
+        text-decoration: none;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+
+    .social-icons a {
+        font-size: 2rem;
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        background-color: #ff6f00;
+        color: #fff;
+        transform: scale(1.1);
+    }
+
+    #menu-bar{
+        color: #fff;
+        border: .1rem solid #fff;
+        border-radius: .5rem;
+        font-size: 3rem;
+        padding: .5rem 1.2rem;
+        cursor: pointer;
+        display: none;
+    }
+
+    body{
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: 'Poppins', sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    /* media queries */
+    @media (max-width: 1200px){
+        html{
+            font-size: 55%;
+        }
+    }
+
+    @media (max-width: 991px){
+        header{
+            padding: 2rem;
+        }
+    }
+
+    @media (max-width: 768px){
+        #menu-bar{
+            display: initial;
+        }
+
+        header .navbar{
+            position: absolute;
+            top: 100%; right: 0; left: 0;
+            background: #333;
+            border-top: .1rem solid rgba(255, 255, 255, .2);
+            padding: 1rem 2rem;
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        }
+
+        header .navbar.active{
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        header .navbar a{
+            display: block;
+            border-radius: .5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: #222;
+        }
+    }
+
+    /* =================== REVIEWS SECTION =================== */
+    .reviews-container {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        overflow-x: auto;
+        padding: 2rem;
+        scroll-behavior: smooth;
+        cursor: grab;
+        align-items: stretch;
+        justify-content: flex-start;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .reviews-container::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    /* Section Title */
+    .reviews-section h2 {
+        font-size: 4.2rem;
+        color: var(--light);
+        margin-bottom: 4rem;
+        margin-top: 20rem; /* Moves heading down */
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        place-self: center;
+    }
+
+    .reviews-section span{
+        color: var(--orange);
+    }
+
+    /* Review Card Container */
+    .reviews-container {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        overflow-x: auto;
+        padding: 2rem;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .reviews-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Transparent Review Card with Shadow */
+    .review-card {
+        flex: 0 0 auto;
+        width: 300px;
+        background: rgba(255, 255, 255, 0.15); /* Transparent white */
+        backdrop-filter: blur(12px);
+        border-radius: 1rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        padding: 2rem;
+        text-align: center;
+        color: var(--light);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .review-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Avatar Image */
+    .review-card img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        border: 3px solid var(--orange);
+    }
+
+    /* Reviewer Name */
+    .review-card h3 {
+        font-size: 2rem;
+        color: var(--orange);
+        margin: 0.5rem 0;
+    }
+
+    /* Reviewer Job or Role */
+    .review-card p {
+        font-size: 1.4rem;
+        margin: 0.3rem 0;
+    }
+
+    /* Star Ratings */
+    .review-card .stars {
+        color: #ffc107;
+        margin: 0.8rem 0;
+    }
+
+    /* Review Text */
+    .review-card .text {
+        font-style: italic;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        color: #eee;
+    }
+
+    .popup-content select {
+        background-color: rgba(255, 255, 255, 0.1); /* semi-transparent dark */
+        color: #fff;
+        border: none;
+        border-radius: .5rem;
+        padding: 1rem;
+        font-size: 1.6rem;
+        appearance: none;          /* remove native styling */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    select option {
+        background-color: #222222ef; /* dark dropdown */
+        color:var(--orange);
+    }
+
+    select option:hover {
+        background-color: var(--orange);
+        color: #000;
+    }
+
+
+
+    /* Responsive Improvements */
+    @media (max-width: 768px) {
+    .reviews-section h2 {
+        font-size: 3rem;
+    }
+
+    .review-card {
+        width: 260px;
+    }
+    }
+
+    /* Optional: Fancy Scrollbar */
+    .reviews-container::-webkit-scrollbar {
+        height: 8px;
+    }
+    .reviews-container::-webkit-scrollbar-thumb {
+        background: var(--orange);
+        border-radius: 4px;
+    }
+
+    .footer{
+    border-top: 1px solid var(--light-gray-color);
+    }
+
+    .footer p{
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 1.5rem;
+        color: var(--light);
+        margin-top: 5%;
+    }
+
+    /* Floating Review Button */
+    .floating-review-btn {
+        position: fixed;
+        top: 12rem;
+        right: 2rem;
+        background-color: var(--orange);
+        color: #fff;
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        cursor: pointer;
+        box-shadow: 0 0 15px rgba(255, 165, 0, 0.7);
+        z-index: 9999;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Popup Modal Styles */
+    .popup-review {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        z-index: 9998;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .popup-review.active {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .popup-content {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 1rem;
+        padding: 3rem;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 10px 40px rgba(255, 165, 0, 0.2);
+        color: #fff;
+        position: relative;
+    }
+
+    .popup-content h3 {
+        font-size: 2.5rem;
+        color: var(--orange);
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .popup-content input,
+    .popup-content textarea,
+    .popup-content select {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: .5rem;
+        padding: 1.2rem;
+        font-size: 1.6rem;
+        color: #fff;
+        width: 100%;
+        margin-bottom: 1.5rem;
+    }
+
+    .popup-content textarea {
+        resize: vertical;
+        height: 10rem;
+    }
+
+    .popup-content input::placeholder,
+    .popup-content textarea::placeholder {
+        color: #ccc;
+    }
+
+    .popup-content .btn {
+        width: 100%;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 4rem;
+        cursor: pointer;
+        color: #fff;
+        transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+        color: var(--orange);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+</style>
+<body>
+  <!-- Inserted Navbar -->
+  <header>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo">T<span>ravia</span></a>
+
+    <nav class="navbar">
+        <a href="Index.html">Home</a>
+        <a href="AboutUS.html">About Us</a>
+        <a href="Services.html">Services</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="#Packages">Packages</a>
+        <a href="ContactUs.html">Contact Us</a>
+        <a href="News.html">News</a>
+    </nav>
+
+    <div class="icons">
+      <i class="fas fa-search" id="search-btn"></i>
+      <i class="fas fa-user" id="login-btn"></i>
+    </div>
+
+
+    <form action="" class="search-bar-container">
+      <input type="search" id="search-bar" placeholder="search here...">
+      <label for="search-bar" class="fas fa-search"></label>
+    </form>
+  </header>
+
+  <!-- login form container -->
+  <div class="login-form-container">
+
+    <i class="fas fa-close" id="form-close"></i>
+
+      <form action="">
+        <h3>Login</h3>
+        <input type="text" class="box" placeholder="Username" required>
+        <input type="password" class="box" placeholder="Password" required>
+        <input type="submit" value="Login Now" class="btn" required>
+        <input type="checkbox" id="remember" required>
+        <label for="remember" required>Agree with Terms & Condition</label>
+        <div class="form-links">
+          <a href="#" class="left-link">Forgot Password?</a>
+          <a href="Register.html" class="right-link">Register Account</a>
+        </div>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-google"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </form>
+    </div>
+
+    <!-- review section -->
+    <section class="reviews-section" id="Reviews">
+        <h2><span>Travel</span>er Experience</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Reviewer 1">
+                <h3>Alex Johnson</h3>
+                <p><i class="fas fa-map-marker-alt"></i> California, USA</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text">"Wonderful experience. Highly recommended!"</p>
+            </div>
+
+            <!-- Reviewer 2 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="User">
+                <h3>David Kim</h3>
+                <p><i class="fas fa-map-marker-alt"></i>  Aklan, Philippines</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="text">"Truly unforgettable adventure in Boracay!"</p>
+            </div>
+            
+            <!-- Reviewer 3 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="User">
+                <h3>Amelia Clark</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Cape Town, South Africa</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text">"Great memories with my family."</p>
+            </div>
+            
+            <!-- Reviewer 4 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="User">
+                <h3>Lucas Gomez</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Madrid, Spain</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text">"Travia made my dream vacation a reality! The tours were perfectly organized and stress-free."</p>
+            </div>
+            
+            <!-- Reviewer 5 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="User">
+                <h3>Sophie Lee</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Melbourne, Australia</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="far fa-star-half-alt"></i>
+                </div>
+                <p class="text">"Highly recommended for solo travelers."</p>
+            </div>
+            
+            <!-- Reviewer 6 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="User">
+                <h3>Omar Al-Farouk</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Dubai, UAE</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text">"A flawless experience from start to finish. Will travel again with Travia for sure!"</p>
+            </div>
+            
+            <!-- Reviewer 7 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="User">
+                <h3>Nina Petrova</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Moscow, Russia</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Lovely guides and stunning views."</p>
+            </div>
+            
+            <!-- Reviewer 8 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="User">
+                <h3>James Wilson</h3>
+                <p><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Decent trip but could be more flexible."</p>
+            </div>
+            
+            <!-- Reviewer 9 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/9.jpg" alt="User">
+                <h3>Laura Schmidt</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Berlin, Germany</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="text">"Loved the whole itinerary!"</p>
+            </div>
+            
+            <!-- Reviewer 10 -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                <h3>Namra Tanaka</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Tokyo, Japan</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Smooth and professional."</p>
+            </div>
+            
+            <!-- Reviewer 11-20 (extra cards) -->
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="User">
+                <h3>Carlos Mendez</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Mexico City, Mexico</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Perfect mix of fun and comfort."</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="User">
+                <h3>Aisha Bello</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Lagos, Nigeria</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i></i><i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Nice but a bit expensive."</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/13.jpg" alt="User">
+                <h3>Maxime Dubois</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Lyon, France</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Decent experience, could improve timing."</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/14.jpg" alt="User">
+                <h3>Chen Mei</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Shanghai, China</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Memorable and scenic."</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="User">
+                <h3>Robert Green</h3>
+                <p><i class="fas fa-map-marker-alt"></i> London, UK</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Pretty good for the price."</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/16.jpg" alt="User">
+                <h3>Emily Harris</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Toronto, Canada</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="text">"Would definitely book again!"</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="User">
+                <h3>Stefan Ivanov</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Sofia, Bulgaria</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i></i><i class="fas fa-star-half-alt"></i>
+                    </i><i class="far fa-star"></i>
+                </div>
+                <p class="text">"Not bad, but expected more."</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/18.jpg" alt="User">
+                <h3>Fatima Khan</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Islamabad, Pakistan</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text">"Tour guides were great!"</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/men/19.jpg" alt="User">
+                <h3>Ali Hassan</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Cairo, Egypt</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="text">"Fun and educational!"</p>
+            </div>
+            
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/20.jpg" alt="User">
+                <h3>Isla Bennett</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Edinburgh, Scotland</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text">"Magical experience, thank you!"</p>
+            </div>
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Ayesha">
+                <h3>Ayesha Khan</h3>
+                <p><i class="fas fa-map-marker-alt"></i>   Erg Chebbi, Morocco</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="far fa-star-half-alt"></i>
+                </div>
+                <p>"The desert safari tour was thrilling! Camels, dunes, and stars — Travia nailed it!"</p>
+            </div>
+            <div class="review-card">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cassey">
+                <h3>Cassey Ortega</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Seoul, South Korea</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <i class="far fa-star-half-alt"></i>
+                </div>
+                <p>"A beautiful experience exploring Korea. Great guides, great food, and unforgettable memories."</p>
+            </div>
+        </div>
+    </section>
+      
+    <div class="footer">
+        <p>&copy; 2025 Travia | Travel & Tour. All Rights Reserved. </p>
+      </div>
+    </div>
+
+    <!-- Floating Review Button -->
+    <div class="floating-review-btn" id="openReviewForm">
+        <i class="fas fa-pen"></i>
+    </div>
+    
+    <!-- Popup Review Form -->
+    <div class="popup-review" id="popupReview">
+        <div class="popup-content">
+        <span class="close-btn" id="closeReviewForm">&times;</span>
+        <h3><i class="fas fa-pen"></i> Submit Your Review</h3>
+        <form id="reviewForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="text" id="location" placeholder="Location" required>
+            <select id="rating" required>
+                <option value="" disabled selected hidden>Select Rating</option>
+                <option value="5">★★★★★</option>
+                <option value="4.5">★★★★◐</option>
+                <option value="4">★★★★☆</option>
+                <option value="3.5">★★★◐☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="2.5">★★◐☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="1.5">★◐☆☆☆</option>
+                <option value="1">★☆☆☆☆</option>
+            </select>
+            <textarea id="message" placeholder="Your message..." required></textarea>
+            <button id="submitReview" type="submit" class="btn">Submit Review</button>
+        </form>
+        </div>
+    </div>
+    
+</body>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const submitBtn = document.getElementById("submitReview");
+        const popupReview = document.getElementById("popupReview");
+        const reviewForm = document.getElementById("reviewForm");
+        const tagIcon = document.getElementById("openReviewForm");
+        
+        document.getElementById('closeReviewForm').addEventListener('click', function () {
+            document.getElementById('popupReview').style.display = 'none';
+        });
+
+        // When Submit is clicked
+        submitBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (reviewForm.checkValidity()) {
+            popupReview.style.display = "none"; // Temporarily hide
+            reviewForm.reset(); // Clear form
+            alert("Thank you for your review!");
+        } else {
+            reviewForm.reportValidity(); // Show built-in required warnings
+        }
+        });
+
+        // When the tag icon is clicked — show popup again
+        if (tagIcon) {
+        tagIcon.addEventListener("click", function () {
+            popupReview.style.display = "flex"; // or "block" depending on your CSS
+        });
+        }
+    });
+
+    // Open/Close Review Form Popup
+    const openReviewForm = document.getElementById('openReviewForm');
+    const popupReview = document.getElementById('popupReview');
+    const closeReviewForm = document.getElementById('closeReviewForm');
+
+    openReviewForm.addEventListener('click', () => {
+    popupReview.classList.add('active');
+    });
+
+    document.getElementById('closeReviewForm')?.addEventListener('click', () => {
+    popupReview.classList.remove('active');
+    });
+
+    window.addEventListener('click', (e) => {
+    if (e.target === popupReview) {
+        popupReview.classList.remove('active');
+    }
+    });
+
+    // Review Submission (same as before)
+    document.getElementById('reviewForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const location = document.getElementById('location').value.trim();
+    const rating = parseInt(document.getElementById('rating').value);
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !location || !rating || !message) {
+        alert('Please fill out all fields.');
+        return;
+    }
+
+    const reviewCard = document.createElement('div');
+    reviewCard.classList.add('review-card');
+
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        starsHTML += `<i class="${i <= rating ? 'fas' : 'far'} fa-star"></i>`;
+    }
+
+    reviewCard.innerHTML = `
+        <div class="user-info">
+        <i class="fas fa-user-circle"></i>
+        <div>
+            <h3>${name}</h3>
+            <p><i class="fas fa-map-marker-alt"></i> ${location}</p>
+        </div>
+        </div>
+        <div class="stars">${starsHTML}</div>
+        <p class="message">${message}</p>
+    `;
+
+    document.getElementById('reviewList').prepend(reviewCard);
+
+    this.reset();
+    popupReview.classList.remove('active');
+    });
+
+    
+  // Navbar interactivity
+  const searchBtn = document.querySelector('#search-btn');
+  const searchBar = document.querySelector('.search-bar-container');
+  const formBtn = document.querySelector('#login-btn');
+  const loginForm = document.querySelector('.login-form-container');
+  const formClose = document.querySelector('#form-close');
+  const menu = document.querySelector('#menu-bar');
+  const navbar = document.querySelector('.navbar');
+
+  window.onscroll = () => {
+    searchBtn.classList.remove('fa-times');
+    searchBar.classList.remove('active');
+    menu.classList.remove('fa-times');
+    navbar.classList.remove('active');
+    loginForm.classList.remove('active');
+  };
+
+  menu.addEventListener('click', () => {
+    menu.classList.toggle('fa-times');
+    navbar.classList.toggle('active');
+  });
+
+  searchBtn.addEventListener('click', () => {
+    searchBtn.classList.toggle('fa-times');
+    searchBar.classList.toggle('active');
+  });
+
+  formBtn.addEventListener('click', () => {
+    loginForm.classList.add('active');
+  });
+
+  formClose.addEventListener('click', () => {
+    loginForm.classList.remove('active');
+  });
+
+  
+  // Drag-to-scroll for reviews
+  const reviewsContainer = document.querySelector('.reviews-container');
+  if (reviewsContainer) {
+    let isDragging = false;
+    let startX, scrollLeft;
+
+    reviewsContainer.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      reviewsContainer.classList.add('active');
+      startX = e.pageX - reviewsContainer.offsetLeft;
+      scrollLeft = reviewsContainer.scrollLeft;
+    });
+
+    reviewsContainer.addEventListener('mouseleave', () => {
+      isDragging = false;
+      reviewsContainer.classList.remove('active');
+    });
+
+    reviewsContainer.addEventListener('mouseup', () => {
+      isDragging = false;
+      reviewsContainer.classList.remove('active');
+    });
+
+    reviewsContainer.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - reviewsContainer.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed multiplier
+      reviewsContainer.scrollLeft = scrollLeft - walk;
+    });
+
+    // Optional: drag support for touch devices
+    reviewsContainer.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].pageX;
+      scrollLeft = reviewsContainer.scrollLeft;
+    });
+
+    reviewsContainer.addEventListener('touchmove', (e) => {
+      const x = e.touches[0].pageX;
+      const walk = (x - startX) * 2;
+      reviewsContainer.scrollLeft = scrollLeft - walk;
+    });
+  }
+
+
+</script>
+</html>

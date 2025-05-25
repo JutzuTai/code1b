@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Travia Travels</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+    <!-- Home Page section starts -->
+<header>
+  <!-- Inserted Navbar -->
+  <div id="menu-bar" class="fas fa-bars"></div>
+
+  <a href="#" class="logo">T<span>ravia</span></a>
+
+  <nav class="navbar">
+      <a href="#">Book</a>
+      <a href="AboutUS.html">About Us</a>
+      <a href="Services.html">Services</a>
+      <a href="Gallery.html">Gallery</a>
+      <a href="Reviews.html">Reviews</a>
+      <a href="ContactUs.html">Contact Us</a>
+      <a href="News.html">News</a>
+  </nav>
+
+  <div class="icons">
+    <i class="fas fa-search" id="search-btn"></i>
+    <i class="fas fa-user" id="login-btn"></i>
+  </div>
+
+
+  <form action="" class="search-bar-container">
+    <input type="search" id="search-bar" placeholder="search here...">
+    <label for="search-bar" class="fas fa-search"></label>
+  </form>
+</header>
+
+  <!-- login form container -->
+  <div class="login-form-container">
+
+      <i class="fas fa-close" id="form-close"></i>
+
+      <form action="">
+        <h3>Login</h3>
+        <input type="text" class="box" placeholder="Username" required>
+        <input type="password" class="box" placeholder="Password" required>
+        <input type="submit" value="Login Now" class="btn" required>
+        <input type="checkbox" id="remember" required>
+        <label for="remember" required>Agree with Terms & Condition</label>
+        <div class="form-links">
+          <a href="#" class="left-link">Forgot Password?</a>
+          <a href="Register.html" class="right-link">Register Account</a>
+        </div>
+        <div class="social-icon">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-google"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </form>
+    </div>
+
+    <!-- showcase -->
+    <main>
+      <div class="slide-container swiper">
+        <div class="slide-content swiper-wrapper">
+          <div class="overlay swiper-slide">
+            <img src="assets/bg1.jpg" alt="">
+            <div class="img-overlay">
+              <p>Let's Discover the World with us</p>
+              <h2><span>Discover </span>The World</h2>
+              <h2>With Our Guide</h2>
+            </div>
+          </div>
+          <div class="overlay swiper-slide">
+            <img src="assets/bg2.jpg" alt="">
+            <div class="img-overlay">
+              <p>Let's Discover the World with us</p>
+              <h2><span>Discover </span>New Places</h2>
+              <h2>Adventure Awaits</h2>
+            </div>
+          </div>
+          <div class="overlay swiper-slide">
+            <img src="assets/bg3.jpg" alt="">
+            <div class="img-overlay">
+              <p>Let's Discover the World with us</p>
+              <h2><span>Discover </span>The World</h2>
+              <h2>With Our <span>Travia</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- TOUCH SEARCH -->
+      <section class="tour-search">
+        <div class="container">
+          <div class="form-wrapper">
+            <form action="" class="tour-search-form">
+              <div class="input-wrapper">
+                <label for="destination" class="input-label">Search Destination</label>
+                <input type="text" name="destination" id="destination" required placeholder="Enter Destination" class="input-field">
+              </div>
+              <div class="input-wrapper">
+                <label for="people" class="input-label">Pax Number*</label>
+                <input type="number" name="people" id="people" required placeholder="No. of People" class="input-field">
+              </div>
+              <div class="input-wrapper">
+                <label for="checkin" class="input-label">Checkin Date**</label>
+                <input type="date" name="checkin" id="checkin" required class="input-field">
+              </div>
+              <div class="input-wrapper">
+                <label for="checkout" class="input-label">Checkout Date*</label>
+                <input type="date" name="checkout" id="checkout" required class="input-field">
+              </div>
+              <button type="submit" class="btn btn-secondary">INQUIRE NOW</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==== Footer ==== -->
+    <footer id="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="ft-content">
+            <div class="icon">
+              <i class="fa fa-phone-volume"></i>
+            </div>
+            <div class="content">
+              <p class="lead">Call us</p>
+              <p>+63 921-5089-729</p>
+            </div>
+          </div>
+          <div class="ft-content">
+            <div class="icon">
+              <i class="fa fa-envelope-open"></i>
+            </div>
+            <div class="content">
+              <p class="lead">Email us</p>
+              <p>admin@OnlineITtuts.com</p>
+            </div>
+          </div>
+          <div class="ft-content">
+            <div class="icon">
+              <i class="fa fa-map-location"></i>
+            </div>
+            <div class="content">
+              <p class="lead">Address</p>
+              <p>24 King St, SC 29401 Pampanga</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- footer content 2nd section -->
+        <div class="footer-wrapper">
+          <div class="about">
+            <div class="text-logo">
+              <a href="#" class="logo">T<span>ravia</span></a>
+            </div>
+            <div class="lead">
+              <p>
+                Travia Travels is your trusted partner in discovering the beauty of the world. 
+                From breathtaking destinations to curated travel experiences, we help you explore 
+                more and worry less. Join our community of explorers and start your next adventure today.
+              </p>
+              <div class="social-icons">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-youtube"></i>
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+            </div>
+          </div>
+          <div class="links">
+            <h2>Quick Links</h2>
+            <ul>
+              <li><a href="FAQs.html">FAQs</a></li>
+              <li><a href="Mission&Vision.html">Mission and Vision</a></li>
+              <li><a href="WDP.html">Web Designer Profile</a></li>
+              <li><a href="#Destination">Destination</a></li>
+              <li><a href="#Packages">Packages</a></li>
+            </ul>
+          </div>
+          <div class="subscribe">
+            <h2>Subscribe</h2>
+            <p class="lead">
+              Signup for our monthly blog letter to stay informed about travel
+              and tours.
+            </p>
+            <form action="#">
+              <input type="text" placeholder="Email Adress">
+              <button type="button" class="button">Send</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>&copy; 2025 Travia | Travel & Tour. All Rights Reserved. </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- swiper js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- custon js file link -->
+    <script src="script.js"></script>
+</body>
+</html>

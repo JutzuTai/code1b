@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore the world with our curated travel and tour packages." />
+  <title>Mission and Vision | Travia Travels</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    /* --- Reused Navbar Styles from Homepage --- */
+    :root {
+      --orange: #ffa500;
+    }
+
+    *{
+    font-family: 'Nunito', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+    }
+
+    html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 100px;
+    scroll-behavior: smooth;
+    }
+
+    .btn{
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--orange);
+    color: #fff;
+    padding: .8rem 3rem;
+    border: .2rem solid var(--orange);
+    cursor: pointer;
+    font-size: 1.7rem solid var(--orange);
+    cursor: pointer;
+    font-size: 1.7rem;
+    }
+
+    .btn:hover{
+    background: rgba(255, 165, 0, .2);
+    color: var(--orange);
+    }
+
+    header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #333;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    }
+
+    header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: #fff;
+    text-transform: uppercase;
+    }
+
+    header .logo span {
+      color: var(--orange);
+    }
+
+    header .navbar a{
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 .8rem;
+    }
+
+    header .navbar a:hover {
+      color: var(--orange);
+    }
+
+    header .icons i{
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 2rem;
+    }
+
+    header .icons i:hover{
+        color: var(--orange);
+    }
+
+    header .search-bar-container.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .search-bar-container{
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    padding: 1.5rem 2rem;
+    background: #333;
+    border-top: .1rem solid rgba(255, 255, 255, .2);
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .search-bar-container #search-bar{
+      width:100%;
+      padding: 1rem;
+      text-transform: none;
+      color: #333;
+      font-size: 1.7rem;
+      border-radius: .5rem;
+    }
+
+    header .search-bar-container label{
+      color: #fff;
+      cursor: pointer;
+      font-size: 3rem;
+      margin-left: 1.5rem;
+    }
+
+    header .search-bar-container label:hover{
+      color: var(--orange);
+    }
+
+    .login-form-container {
+      position: fixed;
+      top: -120%;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: top 0.4s ease;
+    }
+
+    .login-form-container.active {
+      top: 0;
+    }
+
+    .login-form-container form {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 1rem;
+      padding: 2rem 3rem;
+      width: 100%;
+      max-width: 500px; /* ← back to medium size */
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      animation: slideIn 0.6s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+      }
+    }
+
+    .login-form-container form h3 {
+      font-size: 2.5rem;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .login-form-container form .box {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: .5rem;
+      font-size: 1.6rem;
+      background: rgba(255, 255, 255, 0.8);
+      color: #333;
+      transition: background 0.3s ease;
+    }
+
+    .login-form-container form .box:focus {
+      background: rgba(255, 255, 255, 1);
+      outline: none;
+    }
+
+    .login-form-container form .btn {
+      background-color: #ff6f00;
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      font-size: 1.6rem;
+      border-radius: .5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .login-form-container form .btn:hover {
+      background-color: #e65c00;
+    }
+
+    .login-form-container form label {
+      font-size: 1.4rem;
+      margin-left: 0.5rem;
+      color: #eee;
+    }
+
+    .login-form-container form #remember {
+      margin: 1.5rem 0;
+      transform: scale(1.2);
+    }
+
+    .login-form-container form p {
+      font-size: 1.3rem;
+      margin: 1rem 0 0;
+      color: #ccc;
+    }
+
+    .login-form-container form p a {
+      color: #ff6f00;
+      text-decoration: none;
+    }
+
+    .login-form-container form p a:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
+
+    .login-form-container #form-close {
+      position: absolute;
+      top: 2rem;
+      right: 2.5rem;
+      font-size: 3.5rem;
+      color: #fff;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .login-form-container #form-close:hover {
+      color: #ff6f00;
+    }
+
+    .form-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .form-links a {
+      color: #ff6f00;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .form-links a:hover {
+      color: #fff;
+      text-decoration: underline;
+      text-decoration: none;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+
+    .social-icons a {
+      font-size: 2rem;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background-color: #ff6f00;
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    #menu-bar{
+      color: #fff;
+      border: .1rem solid #fff;
+      border-radius: .5rem;
+      font-size: 3rem;
+      padding: .5rem 1.2rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    /* media queries */
+    @media (max-width: 1200px){
+      html{
+          font-size: 55%;
+      }
+    }
+
+    @media (max-width: 991px){
+      header{
+          padding: 2rem;
+      }
+    }
+
+    @media (max-width: 768px){
+      #menu-bar{
+        display: initial;
+      }
+
+        header .navbar{
+          position: absolute;
+          top: 100%; right: 0; left: 0;
+          background: #333;
+          border-top: .1rem solid rgba(255, 255, 255, .2);
+          padding: 1rem 2rem;
+          clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        }
+
+        header .navbar.active{
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        header .navbar a{
+          display: block;
+          border-radius: .5rem;
+          padding: 1.5rem;
+          margin: 1.5rem 0;
+          background: #222;
+        }
+    }
+
+    /* Adjusting content for fixed header */
+    body {
+      line-height: 1.6;
+      color: #fff;
+      background-color: #f4f4f4;
+      background-image: url(assets/Travel.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      padding-top: 80px; /* Make space for fixed header */
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero .overlay p {
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-btn {
+      background-color: #ff6347;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+    }
+
+    .cta-btn:hover {
+      background-color: #e5533d;
+    }
+
+    .mission {
+      margin-top: 60px;
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 100%;
+    }
+
+    .mission h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .mv-content {
+      display: flex;
+      justify-content: center;
+      align-items: stretch; /* Ensures all cards are equal height */
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    .mv-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1 1 300px; 
+      min-height: 120px; 
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    .mv-card h3 {
+      color: #00e5ff;
+      font-size: clamp(1.8rem, 2vw, 2.4rem);
+      margin-bottom: 10px;
+    }
+
+    .mv-card p {
+      font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .mv-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .mv-card li {
+      font-size: clamp(1.3rem, 1.5vw, 1.5rem);
+      line-height: 1.4;
+      margin-bottom: 5px;
+    }
+
+    .mv-card li::before {
+      content: "• ";
+      color: #00e5ff;
+    }
+
+    .hover-boxes {
+      padding: 50px 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 100%;
+    }
+
+    .hover-boxes .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    .boxes {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .boxes img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .boxes:hover img {
+      transform: scale(1.1);
+    }
+
+    .boxes .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 15px;
+      transition: opacity 0.3s ease;
+    }
+
+    .boxes:hover .overlay {
+      opacity: 1;
+    }
+
+    .boxes .overlay h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+    }
+
+    .boxes .overlay p {
+      line-height: 1.4;
+      margin: 0;
+      padding: 0;
+      font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      font-size: 1.3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Inserted Navbar -->
+  <header>
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo">T<span>ravia</span></a>
+    <nav class="navbar">
+      <a href="Index.html">Home</a>
+      <a href="AboutUS.html">About Us</a>
+      <a href="Services.html">Services</a>
+      <a href="Gallery.html">Gallery</a>
+      <a href="Reviews.html">Reviews</a>
+      <a href="ContactUs.html">Contact Us</a>
+      <a href="News.html">News</a>
+    </nav>
+
+    <div class="icons">
+    <i class="fas fa-search" id="search-btn"></i>
+    <i class="fas fa-user" id="login-btn"></i>
+    </div>
+
+
+    <form action="" class="search-bar-container">
+      <input type="search" id="search-bar" placeholder="search here...">
+      <label for="search-bar" class="fas fa-search"></label>
+    </form>
+  </header>
+
+  <!-- login form container -->
+ <div class="login-form-container">
+
+  <i class="fas fa-close" id="form-close"></i>
+
+    <form action="">
+      <h3>Login</h3>
+      <input type="text" class="box" placeholder="Username" required>
+      <input type="password" class="box" placeholder="Password" required>
+      <input type="submit" value="Login Now" class="btn" required>
+      <input type="checkbox" id="remember" required>
+      <label for="remember" required>Agree with Terms & Condition</label>
+      <div class="form-links">
+        <a href="#" class="left-link">Forgot Password?</a>
+        <a href="Register.html" class="right-link">Register Account</a>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-google"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay">
+      <h1>Welcome to Easy Bookings</h1>
+      <p>Your gateway to unforgettable journeys</p>
+      <a href="#mission" class="cta-btn">Discover Our Mission</a>
+    </div>
+  </section>
+
+  <!-- Mission and Vision Section -->
+  <section class="mission" id="mission">
+    <h2>Our Mission & Vision</h2>
+    <div class="mv-content">
+      <div class="mv-card">
+        <h3>Mission</h3>
+        <p>To inspire meaningful travel experiences that connect people to places, cultures, and themselves.</p>
+      </div>
+      <div class="mv-card">
+        <h3>Vision</h3>
+        <p>To become the world’s most trusted travel companion, offering journeys that enrich lives and communities.</p>
+      </div>
+      <div class="mv-card">
+        <h3>Our Values</h3>
+        <ul>
+          <li>Authenticity</li>
+          <li>Sustainability</li>
+          <li>Customer Delight</li>
+          <li>Cultural Respect</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hover Boxes -->
+  <section id="services" class="hover-boxes">
+    <div class="container">
+      <div class="boxes">
+        <img src="assets/Explore.jpg" alt="Beach Escapes">
+        <div class="overlay">
+          <h3>Easy Bookings</h3>
+          <p>Seamless reservations for your dream destinations.</p>
+        </div>
+      </div>
+      <div class="boxes">
+        <img src="assets/Culture.avif" alt="Mountain Adventures">
+        <div class="overlay">
+          <h3>Travel World</h3>
+          <p>
+            Explore diverse 
+            cultures and landscapes.
+          </p>
+        </div>
+      </div>
+      <div class="boxes">
+        <img src="assets/Tour.avif" alt="Cultural Journeys">
+        <div class="overlay">
+          <h3>Enjoy Tours</h3>
+          <p>
+            Guided tours for 
+            unforgettable experiences.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Easy Bookings - Travel World - Enjoy Tours. All Rights Reserved.</p>
+  </footer>
+
+</body>
+
+<script>
+  // Navbar interactivity
+  let searchBtn = document.querySelector('#search-btn');
+  let searchBar = document.querySelector('.search-bar-container');
+  let formBtn = document.querySelector('#login-btn');
+  let loginForm = document.querySelector('.login-form-container');
+  let formClose = document.querySelector('#form-close');
+  let menu = document.querySelector('#menu-bar');
+  let navbar = document.querySelector('.navbar');
+
+  window.onscroll = () =>{
+      searchBtn.classList.remove('fa-times');
+      searchBar.classList.remove('active');
+      menu.classList.remove('fa-times');
+      navbar.classList.remove('active');
+      loginForm.classList.remove('active');
+  }
+
+  menu.addEventListener('click', () =>{
+      menu.classList.toggle('fa-times');
+      navbar.classList.toggle('active');
+  });
+
+  searchBtn.addEventListener('click', () =>{
+      searchBtn.classList.toggle('fa-times');
+      searchBar.classList.toggle('active');
+  });
+
+  formBtn.addEventListener('click', () =>{
+      loginForm.classList.add('active');
+  });
+
+  formClose.addEventListener('click', () => {
+      loginForm.classList.remove('active');
+  });
+</script>
+</html>
